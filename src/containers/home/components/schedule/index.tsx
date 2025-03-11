@@ -44,30 +44,32 @@ const Schedule = ({ loading }: { loading: boolean }) => {
         </div>
       </div>
 
-      <div className="min-h-[50vh]">
+      <div className="min-h-[50vh] relative">
         {loading ? (
-          <div className="flex justify-center items-center h-full min-h-[50vh] w-full">
+          <div className="flex justify-center items-center h-full min-h-[50vh] w-full absolute top-0 left-0 bg-white bg-opacity-90 z-50">
             <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
             <span className="ml-3 text-lg text-gray-600">Loading...</span>
           </div>
         ) : (
-          <FullCalendar
-            events={events}
-            onEventChange={handleEventChange}
-            ref={calendarRef}
-            setSelectedEvent={setSelectedEvent}
-            setSelectedOldEvent={setSelectedOldEvent}
-            setEventEditOpen={setIsShowEditEventModal}
-            setViewedDate={setViewedDate}
-            onDateClick={(arg: DateClickArg) => {
-              setIsShowAddEventModal(true);
-            }}
-            onSelectedDate={(info) => {
-              setSelectedStart(info.start);
-              setSelectedEnd(info.end);
-            }}
-          />
+          <></>
         )}
+
+        <FullCalendar
+          events={events}
+          onEventChange={handleEventChange}
+          ref={calendarRef}
+          setSelectedEvent={setSelectedEvent}
+          setSelectedOldEvent={setSelectedOldEvent}
+          setEventEditOpen={setIsShowEditEventModal}
+          setViewedDate={setViewedDate}
+          onDateClick={(arg: DateClickArg) => {
+            setIsShowAddEventModal(true);
+          }}
+          onSelectedDate={(info) => {
+            setSelectedStart(info.start);
+            setSelectedEnd(info.end);
+          }}
+        />
       </div>
       <EventEditForm
         eventEditOpen={isShowEditEventModal}
